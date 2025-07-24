@@ -11,6 +11,10 @@ spec:
             repoURL: https://github.com/frallan97/hello-app.git
             targetRevision: main
             path: charts/hello-app
+          - name: react-go-app
+            repoURL: https://github.com/frallan97/react-go-app.git
+            targetRevision: main
+            path: charts/react-go-app
 
   template:
     metadata:
