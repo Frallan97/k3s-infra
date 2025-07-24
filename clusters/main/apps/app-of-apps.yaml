@@ -21,8 +21,6 @@ spec:
         repoURL: '{{repoURL}}'
         targetRevision: '{{targetRevision}}'
         path: '{{path}}'
-        # Since path points to a folder with a Chart.yaml,
-        # Argo CD will detect it as a Helm chart automatically.
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{name}}'
@@ -30,3 +28,6 @@ spec:
         automated:
           prune: true
           selfHeal: true
+        # This tells Argo CD to create the namespace if missing:
+        syncOptions:
+        - CreateNamespace=true
