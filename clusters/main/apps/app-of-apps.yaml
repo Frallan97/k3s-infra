@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps-of-apps
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          # Add one entry per app name
+          - name: example-app
+            chart: example-app
+            repoURL: https://github.com/frallan97/example-app
+            targetRevision: main
+          # More apps go here...
+
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: '{{repoURL}}'
+        targetRevision: '{{targetRevision}}'
+        chart: '{{chart}}'
+        helm:
+          releaseName: '{{name}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{name}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true 
