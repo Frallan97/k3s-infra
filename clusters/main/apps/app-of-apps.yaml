@@ -7,12 +7,10 @@ spec:
   generators:
     - list:
         elements:
-          # Add one entry per app name
           - name: hello-app
-            chart: hello-app
-            repoURL: https://github.com/frallan97/hello-app
+            repoURL: https://github.com/frallan97/hello-app.git
             targetRevision: main
-          # More apps go here...
+            path: charts/hello-app
 
   template:
     metadata:
@@ -22,13 +20,13 @@ spec:
       source:
         repoURL: '{{repoURL}}'
         targetRevision: '{{targetRevision}}'
-        chart: '{{chart}}'
-        helm:
-          releaseName: '{{name}}'
+        path: '{{path}}'
+        # Since path points to a folder with a Chart.yaml,
+        # Argo CD will detect it as a Helm chart automatically.
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{name}}'
       syncPolicy:
         automated:
           prune: true
-          selfHeal: true 
+          selfHeal: true
