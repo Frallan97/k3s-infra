@@ -8,10 +8,10 @@ spec:
     - list:
         elements:
           # Add one entry per app name
-          - name: example-app
-            chart: example-app
-            repoURL: https://github.com/frallan97/example-app
-            targetRevision: main
+        - name: hello-app
+          chart: hello-app
+          repoURL: https://github.com/frallan97/hello-app
+          targetRevision: main
           # More apps go here...
 
   template:
