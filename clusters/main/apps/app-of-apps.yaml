@@ -11,10 +11,6 @@ spec:
             repoURL: https://github.com/frallan97/react-go-app.git
             targetRevision: main
             path: charts/react-go-app
-          - name: hackaton-demo
-            repoURL: https://github.com/Frallan97/hackaton-demo.git
-            targetRevision: main
-            path: charts/hackaton-demo
 
 
   template:
